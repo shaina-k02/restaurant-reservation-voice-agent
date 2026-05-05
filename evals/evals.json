@@ -1,0 +1,103 @@
+{
+  "skill_name": "resume-tailor",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need a freshly tailored resume. Resume: resume.pdf. Job: Senior Data Engineer at Stripe.\n\nRequirements:\n- 5+ years of experience in data engineering or backend engineering\n- Strong proficiency in Python and SQL\n- Experience building and maintaining ETL/ELT pipelines at scale\n- Familiarity with distributed data processing frameworks (Spark, Flink, or Beam)\n- Experience with cloud data warehouses (BigQuery, Redshift, or Snowflake)\n- Strong understanding of data modeling and schema design\n- BS/MS in Computer Science or equivalent\n\nNice to have:\n- Experience with streaming data systems (Kafka, Kinesis)\n- Familiarity with dbt or similar transformation tools\n- Experience in fintech or payments industry\n- Contributions to open-source data tools",
+      "expected_output": "A new versioned PDF file (e.g., tailored_resume_stripe_data_engineer_v1.pdf) saved to ~/Desktop/tailored_resumes/. Chat output with exactly three sections: STRENGTHS, GAPS, SUGGESTED IMPROVEMENTS. No Key Changes section. Original resume.pdf unchanged.",
+      "files": ["evals/files/sample_resume.pdf"],
+      "assertions": [
+        "A new PDF file was created in ~/Desktop/tailored_resumes/",
+        "The output filename contains a version number (v1, v2, etc.)",
+        "The output filename contains the company name or job title",
+        "The original resume.pdf was not modified",
+        "The chat response includes a STRENGTHS section with at least 2 bullets",
+        "The chat response includes a GAPS section with at least 2 bullets",
+        "The chat response includes a SUGGESTED IMPROVEMENTS section with at least 2 bullets",
+        "The chat response does NOT contain a Key Changes section",
+        "The resume content was NOT dumped into the chat response",
+        "No skills or experiences were fabricated that aren't in the original resume"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "hey can you tailor my resume for this ML role? my resume is the docx file.\n\nML Engineer — Series B AI Startup (San Francisco)\n\nWhat you'll do:\n- Design and deploy production ML pipelines for our core product\n- Fine-tune and evaluate LLMs for domain-specific tasks\n- Build and maintain RAG systems for knowledge retrieval\n- Collaborate with product and engineering to ship ML features fast\n\nRequirements:\n- 2+ years building production ML pipelines\n- Experience with PyTorch or TensorFlow\n- Familiarity with LLMs and prompt engineering\n- Strong Python skills\n- Experience deploying models to production (Docker, K8s preferred)\n- BS/MS in CS or related field\n\nNice to have:\n- Experience with RAG systems\n- Contributions to open source\n- Startup experience",
+      "expected_output": "A new versioned DOCX file saved to ~/Desktop/tailored_resumes/. Chat output with STRENGTHS, GAPS, SUGGESTED IMPROVEMENTS only. Jordan Rivera's ML background should align well with this role.",
+      "files": ["evals/files/sample_resume.docx"],
+      "assertions": [
+        "A new DOCX file was created in ~/Desktop/tailored_resumes/",
+        "The output filename contains a version number",
+        "The original DOCX was not modified",
+        "The chat response includes a STRENGTHS section",
+        "The chat response includes a GAPS section",
+        "The chat response includes a SUGGESTED IMPROVEMENTS section",
+        "The chat response does NOT contain a Key Changes section",
+        "Strengths reference specific ML skills from both the resume and job description",
+        "Gaps identify specific job requirements not covered in the resume",
+        "The resume content was NOT dumped into the chat response"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Tailor my LaTeX resume (resume.tex) for this role:\n\nSoftware Engineer II at Microsoft — Cloud + AI Platform\n\nResponsibilities:\n- Design and implement scalable cloud services on Azure\n- Build microservices that handle millions of requests per day\n- Write clean, tested, production-quality code in C# or Java\n- Participate in on-call rotations and incident response\n- Collaborate across teams to define technical roadmaps\n\nRequired qualifications:\n- 3+ years professional software development experience\n- Strong proficiency in C#, .NET, or Java\n- Experience with cloud services (Azure preferred, AWS/GCP acceptable)\n- Understanding of distributed systems and microservices architecture\n- Experience with CI/CD pipelines and DevOps practices\n- Excellent written and verbal communication skills\n- BS in Computer Science or equivalent\n\nPreferred qualifications:\n- Experience with Kubernetes or container orchestration\n- Familiarity with service mesh technologies (Istio, Linkerd)\n- Experience with observability tools (Prometheus, Grafana, Datadog)",
+      "expected_output": "A new versioned .tex file saved to ~/Desktop/tailored_resumes/. The .tex file should be valid LaTeX. Chat output with STRENGTHS, GAPS, SUGGESTED IMPROVEMENTS. Maya Chen's full-stack background partially matches — gaps likely around C#/.NET/Azure.",
+      "files": ["evals/files/sample_resume.tex"],
+      "assertions": [
+        "A new .tex file was created in ~/Desktop/tailored_resumes/",
+        "The output .tex file is valid LaTeX (contains \\begin{document} and \\end{document})",
+        "The original resume.tex was not modified",
+        "The chat response includes STRENGTHS, GAPS, and SUGGESTED IMPROVEMENTS sections",
+        "The chat response does NOT contain a Key Changes section",
+        "The analysis mentions C# or .NET or Azure as a gap",
+        "The tailored resume preserves LaTeX document structure",
+        "No fabricated experiences or skills were added"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "tailor my resume for this job. resume is attached.",
+      "expected_output": "The skill should ask for the missing job description or job link before proceeding, since only a resume was provided without a target job.",
+      "files": ["evals/files/sample_resume.pdf"],
+      "assertions": [
+        "The agent asks for the missing job description or job URL",
+        "The agent does NOT proceed to tailor without a job target",
+        "No output file is created prematurely"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "I found this amazing Data Scientist role at Netflix. Here's the description:\n\nData Scientist — Content Analytics at Netflix\n\nThe Role:\n- Build statistical models to optimize content acquisition and production decisions\n- Design and analyze A/B tests for product features\n- Partner with content strategy teams to deliver data-driven insights\n\nRequirements:\n- MS/PhD in Statistics, CS, Economics, or related quantitative field\n- 3+ years experience in data science or applied statistics\n- Expert in Python and R for statistical analysis\n- Experience with causal inference and experimental design\n- Strong SQL skills\n- Experience with big data tools (Spark, Hive)\n- Excellent communication skills for non-technical stakeholders\n\nCan you help me tailor my application?",
+      "expected_output": "The skill should ask for the missing resume file before proceeding.",
+      "files": [],
+      "assertions": [
+        "The agent asks for the missing resume file",
+        "The agent does NOT proceed to tailor without a resume",
+        "No output file is created prematurely"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Tailor my resume for this:\n\nBackend Developer at a startup. Python, APIs, databases. 2+ years.\n\nMy resume is resume.pdf.",
+      "expected_output": "The skill should still work with this sparse job description. Should produce a tailored resume and analysis without refusing or asking for more details.",
+      "files": ["evals/files/sample_resume.pdf"],
+      "assertions": [
+        "A new PDF file was created in ~/Desktop/tailored_resumes/",
+        "The agent did NOT refuse or ask for a more detailed job description",
+        "The chat response includes STRENGTHS, GAPS, and SUGGESTED IMPROVEMENTS sections",
+        "The chat response does NOT contain a Key Changes section"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "I need a freshly tailored resume. Resume: resume.pdf. Job: Senior Data Engineer at Stripe.\n\nRequirements:\n- 5+ years of experience in data engineering\n- Strong proficiency in Python and SQL\n- Experience with ETL pipelines, Spark, cloud data warehouses\n- BS/MS in CS\n\nNote: I already have a v1 of this tailored resume. Generate a new version.",
+      "expected_output": "A new versioned file (v2 or higher) should be created even though a previous version exists. The agent should not skip or refuse.",
+      "files": ["evals/files/sample_resume.pdf"],
+      "assertions": [
+        "A new PDF file was created (not skipped because a previous version exists)",
+        "The output filename contains a version number higher than v1",
+        "The agent did NOT refuse or say the resume was already tailored",
+        "The chat response includes STRENGTHS, GAPS, and SUGGESTED IMPROVEMENTS sections"
+      ]
+    }
+  ]
+}
